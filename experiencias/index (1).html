@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta name="robots" content="noindex,nofollow,noarchive">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ado | A Voz por Trás da Máscara</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #090909;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ===== FUNDO ===== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(120, 0, 0, 0.25), transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(80, 0, 100, 0.20), transparent 30%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ===== NAVBAR ===== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.82);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ff1744;
+            letter-spacing: 3px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff1744;
+        }
+
+        /* ===== HERO ===== */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 8% 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(70px, 13vw, 170px);
+            line-height: 0.8;
+            letter-spacing: -8px;
+            color: white;
+            text-shadow:
+                5px 5px 0 #ff1744,
+                10px 10px 35px rgba(255, 23, 68, 0.3);
+        }
+
+        .hero h2 {
+            margin-top: 30px;
+            font-size: 25px;
+            color: #ddd;
+        }
+
+        .hero p {
+            margin-top: 18px;
+            max-width: 600px;
+            line-height: 1.7;
+            color: #aaa;
+            font-size: 17px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 28px;
+            background: #ff1744;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+            box-shadow: 0 0 25px rgba(255, 23, 68, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            background: #ff4569;
+            box-shadow: 0 0 40px rgba(255, 23, 68, 0.55);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 5%;
+            bottom: 0;
+            width: min(500px, 45vw);
+            opacity: 0.75;
+            filter: grayscale(100%) contrast(120%);
+            mask-image: linear-gradient(to bottom, black 65%, transparent);
+        }
+
+        /* ===== SEÇÕES ===== */
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            font-size: 48px;
+            margin-bottom: 45px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: #ff1744;
+            margin-top: 12px;
+        }
+
+        .intro {
+            max-width: 850px;
+            color: #bbb;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        /* ===== CARDS ===== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #151515, #0d0d0d);
+            border: 1px solid #292929;
+            padding: 30px;
+            border-radius: 10px;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #ff1744;
+            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.15);
+        }
+
+        .card-icon {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #ff1744;
+            margin-bottom: 12px;
+            font-size: 24px;
+        }
+
+        .card p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* ===== MÚSICAS ===== */
+
+        .songs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .song {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: #111;
+            border: 1px solid #222;
+            padding: 18px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .song:hover {
+            background: #181818;
+            transform: translateX(6px);
+        }
+
+        .song-number {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff1744;
+            width: 35px;
+        }
+
+        .song-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .song-info p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* ===== PLAYER ===== */
+
+        .player {
+            margin-top: 40px;
+            background: linear-gradient(135deg, #25000a, #11000d);
+            border: 1px solid #4b0b18;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .player h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        #playButton {
+            border: none;
+            background: #ff1744;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            font-size: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #playButton:hover {
+            transform: scale(1.1);
+        }
+
+        #status {
+            margin-top: 15px;
+            color: #aaa;
+        }
+
+        /* ===== FRASE ===== */
+
+        .quote {
+            min-height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background:
+                linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.9)),
+                url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=80")
+                center/cover;
+        }
+
+        .quote h2 {
+            max-width: 900px;
+            font-size: clamp(30px, 5vw, 65px);
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .quote span {
+            color: #ff1744;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            padding: 40px 8%;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #777;
+        }
+
+        footer strong {
+            color: #ff1744;
+        }
+
+        /* ===== ANIMAÇÃO ===== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVO ===== */
+
+        @media (max-width: 850px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: auto;
+            }
+
+            .hero-image {
+                opacity: 0.18;
+                width: 80vw;
+                right: 10%;
+            }
+
+            .cards,
+            .songs {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <div class="logo">ADO</div>
+
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#musicas">Músicas</a></li>
+            <li><a href="#estilo">Estilo</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <h1>ADO</h1>
+
+            <h2>A voz que conquistou o mundo.</h2>
+
+            <p>
+                Uma página dedicada à minha admiração pela cantora japonesa
+                Ado, conhecida pela sua voz poderosa, interpretações intensas
+                e pela sua presença artística misteriosa.
+            </p>
+
+            <a href="#sobre" class="btn">
+                Explorar ↓
+            </a>
+
+        </div>
+
+        <!-- Imagem ilustrativa -->
+        <img
+            class="hero-image"
+            src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1000&q=80"
+            alt="Microfone e palco"
+        >
+
+    </header>
+
+
+    <!-- SOBRE -->
+
+    <section id="sobre" class="reveal">
+
+        <h2 class="section-title">Sobre a Ado</h2>
+
+        <p class="intro">
+            Ado é uma cantora japonesa conhecida pela sua poderosa capacidade
+            vocal e pelas suas interpretações extremamente expressivas.
+            Começou a ganhar reconhecimento através da cultura japonesa de
+            música online e tornou-se uma das vozes mais marcantes da música
+            japonesa contemporânea.
+            <br><br>
+            Uma das características mais interessantes da sua carreira é o
+            mistério em torno da sua identidade visual. Em vez de depender
+            constantemente da sua imagem, Ado coloca a voz e a música no
+            centro da sua arte.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">🎤</div>
+                <h3>Voz poderosa</h3>
+                <p>
+                    Ado é conhecida pelas mudanças dramáticas de tom,
+                    intensidade e emoção durante as suas músicas.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎭</div>
+                <h3>Mistério</h3>
+                <p>
+                    A artista mantém uma forte separação entre a sua vida
+                    pessoal e a sua persona artística.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🇯🇵</div>
+                <h3>Música japonesa</h3>
+                <p>
+                    A sua carreira está profundamente ligada à cena musical
+                    japonesa e à cultura Vocaloid e J-pop.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MÚSICAS -->
+
+    <section id="musicas" class="reveal">
+
+        <h2 class="section-title">Algumas músicas</h2>
+
+        <div class="songs">
+
+            <div class="song">
+                <div class="song-number">01</div>
+                <div class="song-info">
+                    <h3>うっせぇわ — Usseewa</h3>
+                    <p>Uma das músicas mais conhecidas de Ado.</p>
+                </div>
+            </div>
+
+            <div class="song">
+                <div class="song-number">02</div>
+                <div class="song-info">
+                    <h3>踊 — Odo</h3>
+                    <p>Uma música energética com uma forte interpretação vocal.</p>
+                </div>
+            </div>
+
+            <div class="song">
+                <div class="song-number">03</div>
+                <div class="song-info">
+                    <h3>ギラギラ — Gira Gira</h3>
+                    <p>Uma faixa conhecida pela sua intensidade emocional.</p>
+                </div>
+            </div>
+
+            <div class="song">
+                <div class="song-number">04</div>
+                <div class="song-info">
+                    <h3>新時代 — New Genesis</h3>
+                    <p>Uma das músicas associadas ao filme One Piece Film: Red.</p>
+                </div>
+            </div>
+
+            <div class="song">
+                <div class="song-number">05</div>
+                <div class="song-info">
+                    <h3>私は最強 — Watashi wa Saikyou</h3>
+                    <p>Uma interpretação poderosa presente em One Piece Film: Red.</p>
+                </div>
+            </div>
+
+            <div class="song">
+                <div class="song-number">06</div>
+                <div class="song-info">
+                    <h3>Tot Musica</h3>
+                    <p>Uma das faixas mais intensas do universo de One Piece Film: Red.</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- PLAYER INTERATIVO -->
+
+        <div class="player">
+
+            <h3>🎵 Modo Ado</h3>
+
+            <button id="playButton">▶</button>
+
+            <p id="status">
+                Clica no botão para ativar o modo musical!
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ESTILO -->
+
+    <section id="estilo" class="reveal">
+
+        <h2 class="section-title">Porque gosto da Ado?</h2>
+
+        <p class="intro">
+            Para mim, o que torna Ado especial é a forma como ela consegue
+            transformar a sua voz numa verdadeira ferramenta de expressão.
+            As músicas podem passar rapidamente de momentos suaves para
+            partes extremamente explosivas.
+            <br><br>
+            Também gosto da estética misteriosa e da maneira como a música
+            permanece no centro da sua identidade artística.
+        </p>
+
+    </section>
+
+
+    <!-- FRASE -->
+
+    <section class="quote">
+
+        <h2>
+            A música não precisa de mostrar um rosto
+            para <span>mostrar uma emoção.</span>
+        </h2>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            Página criada por um fã de <strong>Ado</strong> ❤️
+        </p>
+
+        <p style="margin-top:10px;">
+            Projeto pessoal — HTML, CSS e JavaScript
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // ==========================
+        // BOTÃO DO MODO MUSICAL
+        // ==========================
+
+        const button = document.getElementById("playButton");
+        const status = document.getElementById("status");
+
+        let playing = false;
+
+        button.addEventListener("click", function () {
+
+            playing = !playing;
+
+            if (playing) {
+
+                button.textContent = "⏸";
+
+                status.textContent =
+                    "🔥 Modo Ado ativado! Aumenta o volume e aproveita.";
+
+                document.body.style.background =
+                    "linear-gradient(120deg, #090909, #21000a, #090909)";
+
+            } else {
+
+                button.textContent = "▶";
+
+                status.textContent =
+                    "Clica no botão para ativar o modo musical!";
+
+                document.body.style.background = "#090909";
+            }
+
+        });
+
+
+        // ==========================
+        // ANIMAÇÃO AO FAZER SCROLL
+        // ==========================
+
+        const elements =
+            document.querySelectorAll(".reveal");
+
+        function revealOnScroll() {
+
+            elements.forEach(function(element) {
+
+                const position =
+                    element.getBoundingClientRect().top;
+
+                const windowHeight =
+                    window.innerHeight;
+
+                if (position < windowHeight - 100) {
+
+                    element.classList.add("active");
+
+                }
+
+            });
+
+        }
+
+        window.addEventListener("scroll", revealOnScroll);
+
+        revealOnScroll();
+
+
+        // ==========================
+        // EFEITO DO MOUSE NO HERO
+        // ==========================
+
+        const hero = document.querySelector(".hero");
+        const heroImage = document.querySelector(".hero-image");
+
+        hero.addEventListener("mousemove", function(event) {
+
+            const x =
+                (event.clientX / window.innerWidth - 0.5) * 20;
+
+            const y =
+                (event.clientY / window.innerHeight - 0.5) * 20;
+
+            heroImage.style.transform =
+                `translate(${x}px, ${y}px)`;
+
+        });
+
+        hero.addEventListener("mouseleave", function() {
+
+            heroImage.style.transform =
+                "translate(0, 0)";
+
+        });
+
+    </script>
+
+</body>
+</html>

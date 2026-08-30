@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta name="robots" content="noindex,nofollow,noarchive">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Futebol dos Amigos ⚽</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #071a12;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #00a651, #003d24);
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+
+        header h1 {
+            font-size: 40px;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #d9ffe9;
+        }
+
+        /* MENU */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 15px;
+            background: #03110b;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00ff88;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+            background:
+                linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),
+                radial-gradient(circle, #16834c, #03110b);
+        }
+
+        .hero h2 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #c8ddd3;
+        }
+
+        .btn {
+            margin-top: 25px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 30px;
+            background: #00d968;
+            color: #001b0e;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.08);
+            background: #00ff80;
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 0;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 30px;
+            color: #00ed75;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #0d2a1d;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #164f35;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,255,120,0.15);
+        }
+
+        .player-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+        }
+
+        .position {
+            color: #7dcca5;
+        }
+
+        /* JOGOS */
+        .match {
+            background: #0d2a1d;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #00e970;
+        }
+
+        .match strong {
+            color: #00ed75;
+        }
+
+        /* TABELA */
+        .table-box {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #0d2a1d;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #194b35;
+        }
+
+        th {
+            background: #00a651;
+        }
+
+        tr:hover {
+            background: #123c28;
+        }
+
+        /* CONTADOR */
+        .contador {
+            text-align: center;
+            background: linear-gradient(135deg, #0d3924, #082015);
+            padding: 35px;
+            border-radius: 20px;
+        }
+
+        #tempo {
+            font-size: 35px;
+            color: #00ff80;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #020a06;
+            color: #8da99b;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 30px;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            nav {
+                gap: 12px;
+                font-size: 14px;
+            }
+
+            .match {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>⚽ Futebol dos Amigos</h1>
+        <p>A nossa equipa, as nossas regras, a nossa paixão.</p>
+    </header>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#jogadores">Jogadores</a>
+        <a href="#jogos">Jogos</a>
+        <a href="#tabela">Classificação</a>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <h2>🏆 Bem-vindos ao nosso campeonato!</h2>
+        <p>Aqui acompanhamos tudo sobre os nossos jogos.</p>
+
+        <button class="btn" onclick="mostrarMensagem()">
+            🔥 Entrar no clima
+        </button>
+    </section>
+
+    <main class="container">
+
+        <!-- JOGADORES -->
+        <section id="jogadores">
+            <h2>👕 Os nossos jogadores</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="player-icon">🧤</div>
+                    <h3>João</h3>
+                    <p class="position">Guarda-redes</p>
+                </div>
+
+                <div class="card">
+                    <div class="player-icon">🛡️</div>
+                    <h3>Pedro</h3>
+                    <p class="position">Defesa</p>
+                </div>
+
+                <div class="card">
+                    <div class="player-icon">⚡</div>
+                    <h3>Rui</h3>
+                    <p class="position">Médio</p>
+                </div>
+
+                <div class="card">
+                    <div class="player-icon">🔥</div>
+                    <h3>Tiago</h3>
+                    <p class="position">Avançado</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- JOGOS -->
+        <section id="jogos">
+            <h2>📅 Próximos jogos</h2>
+
+            <div class="match">
+                <span>Futebol Clube A</span>
+                <strong>20:00</strong>
+                <span>Futebol Clube B</span>
+            </div>
+
+            <div class="match">
+                <span>Os Craques</span>
+                <strong>21:00</strong>
+                <span>Futebol Clube A</span>
+            </div>
+
+            <div class="match">
+                <span>Futebol Clube B</span>
+                <strong>20:30</strong>
+                <span>Os Craques</span>
+            </div>
+        </section>
+
+        <!-- CLASSIFICAÇÃO -->
+        <section id="tabela">
+            <h2>🏆 Classificação</h2>
+
+            <div class="table-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Equipa</th>
+                            <th>J</th>
+                            <th>V</th>
+                            <th>E</th>
+                            <th>D</th>
+                            <th>PTS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>🔥 Os Craques</td>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>13</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>⚽ Futebol Clube A</td>
+                            <td>5</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>10</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>🟢 Futebol Clube B</td>
+                            <td>5</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>4</td>
+                            <td>3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CONTADOR -->
+        <section>
+            <div class="contador">
+                <h2>⏱️ Próximo jogo</h2>
+                <p>O jogo começa em:</p>
+
+                <div id="tempo">00:00:00</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>⚽ Futebol dos Amigos © 2026</p>
+        <p>Feito com HTML, CSS e JavaScript ❤️</p>
+    </footer>
+
+    <script>
+
+        // Mensagem do botão
+        function mostrarMensagem() {
+            alert("🔥 VAMOS GANHAR! ⚽🏆");
+        }
+
+
+        // CONTADOR
+        // Altera esta data para a data do vosso próximo jogo
+        const dataJogo = new Date("2026-09-05T20:00:00").getTime();
+
+        function atualizarContador() {
+
+            const agora = new Date().getTime();
+
+            const diferenca = dataJogo - agora;
+
+            if (diferenca <= 0) {
+                document.getElementById("tempo").innerHTML =
+                    "⚽ O JOGO COMEÇOU!";
+                return;
+            }
+
+            const dias = Math.floor(
+                diferenca / (1000 * 60 * 60 * 24)
+            );
+
+            const horas = Math.floor(
+                (diferenca % (1000 * 60 * 60 * 24)) /
+                (1000 * 60 * 60)
+            );
+
+            const minutos = Math.floor(
+                (diferenca % (1000 * 60 * 60)) /
+                (1000 * 60)
+            );
+
+            const segundos = Math.floor(
+                (diferenca % (1000 * 60)) /
+                1000
+            );
+
+            document.getElementById("tempo").innerHTML =
+                dias + "d " +
+                horas.toString().padStart(2, "0") + ":" +
+                minutos.toString().padStart(2, "0") + ":" +
+                segundos.toString().padStart(2, "0");
+        }
+
+        setInterval(atualizarContador, 1000);
+
+        atualizarContador();
+
+    </script>
+
+</body>
+</html>
