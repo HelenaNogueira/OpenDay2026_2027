@@ -1,0 +1,499 @@
+/* ------------------------------
+   CONFIGURAÇÕES GERAIS
+--------------------------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #0d0d0d;
+    color: white;
+}
+
+
+/* ------------------------------
+   MENU
+--------------------------------*/
+
+header {
+    position: fixed;
+
+    width: 100%;
+
+    top: 0;
+
+    background-color: rgba(13, 13, 13, 0.95);
+
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 30px;
+}
+
+.logo {
+    font-size: 24px;
+
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #ff2e88;
+}
+
+nav ul {
+    display: flex;
+
+    list-style: none;
+
+    gap: 30px;
+}
+
+nav a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #ff2e88;
+}
+
+
+/* ------------------------------
+   HERO
+--------------------------------*/
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 100px;
+
+    padding: 100px 10% 50px;
+
+    background:
+        radial-gradient(circle at 80% 40%, #632078 0%, transparent 35%),
+        radial-gradient(circle at 20% 70%, #7c174c 0%, transparent 30%),
+        #0d0d0d;
+}
+
+.hero-texto {
+    max-width: 650px;
+}
+
+.pequeno-titulo {
+    color: #ff2e88;
+
+    letter-spacing: 4px;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+.hero h2 {
+    font-size: 70px;
+
+    line-height: 1;
+
+    margin-bottom: 25px;
+}
+
+.hero h2 span {
+    color: #ff2e88;
+}
+
+.hero-texto > p:not(.pequeno-titulo) {
+    color: #c7c7c7;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+}
+
+.botao,
+.desafio button {
+
+    display: inline-block;
+
+    border: none;
+
+    background: linear-gradient(
+        90deg,
+        #ff2e88,
+        #8e3dff
+    );
+
+    color: white;
+
+    padding: 16px 30px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.botao:hover,
+.desafio button:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 30px rgba(255, 46, 136, 0.4);
+}
+
+.hero-emoji {
+
+    font-size: 180px;
+
+    animation: dancar 2s infinite alternate ease-in-out;
+}
+
+
+/* animação */
+
+@keyframes dancar {
+
+    from {
+        transform: rotate(-8deg) translateY(0);
+    }
+
+    to {
+        transform: rotate(8deg) translateY(-20px);
+    }
+
+}
+
+
+/* ------------------------------
+   SECÇÕES
+--------------------------------*/
+
+.sobre,
+.estilos,
+.desafio {
+
+    padding: 100px 10%;
+}
+
+.titulo-secao {
+
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+.titulo-secao p {
+
+    color: #ff2e88;
+
+    letter-spacing: 4px;
+
+    font-size: 12px;
+
+    margin-bottom: 15px;
+}
+
+.titulo-secao h2 {
+
+    font-size: 45px;
+}
+
+
+/* ------------------------------
+   SOBRE
+--------------------------------*/
+
+.sobre {
+
+    background-color: #141414;
+
+    text-align: center;
+}
+
+.texto-sobre {
+
+    max-width: 800px;
+
+    margin: auto;
+
+    color: #bdbdbd;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+.numeros {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 80px;
+
+    margin-top: 60px;
+}
+
+.numeros h3 {
+
+    color: #ff2e88;
+
+    font-size: 35px;
+
+    margin-bottom: 10px;
+}
+
+.numeros p {
+
+    color: #aaa;
+}
+
+
+/* ------------------------------
+   CARDS
+--------------------------------*/
+
+.estilos {
+
+    background-color: #0d0d0d;
+}
+
+.cards {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.card {
+
+    background-color: #191919;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    border: 1px solid #2d2d2d;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+
+    transform: translateY(-10px);
+
+    border-color: #ff2e88;
+}
+
+.icone {
+
+    font-size: 45px;
+
+    margin-bottom: 25px;
+}
+
+.card h3 {
+
+    font-size: 23px;
+
+    margin-bottom: 15px;
+}
+
+.card p {
+
+    color: #aaa;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+.card span {
+
+    color: #ff2e88;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+
+/* ------------------------------
+   DESAFIO
+--------------------------------*/
+
+.desafio {
+
+    text-align: center;
+
+    background:
+        radial-gradient(circle, #43115b 0%, #141414 55%);
+}
+
+.desafio h2 {
+
+    font-size: 50px;
+
+    margin-bottom: 20px;
+}
+
+.desafio h2 span {
+
+    color: #ff2e88;
+}
+
+.desafio > p:not(.pequeno-titulo) {
+
+    color: #aaa;
+
+    margin-bottom: 30px;
+}
+
+#resultado {
+
+    margin: 35px auto 0;
+
+    min-height: 80px;
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+
+/* ------------------------------
+   FOOTER
+--------------------------------*/
+
+footer {
+
+    text-align: center;
+
+    padding: 50px;
+
+    background-color: #080808;
+}
+
+footer h2 {
+
+    margin-bottom: 10px;
+}
+
+footer h2 span {
+
+    color: #ff2e88;
+}
+
+footer p {
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+/* ------------------------------
+   RESPONSIVO
+--------------------------------*/
+
+@media (max-width: 900px) {
+
+    .hero {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 40px;
+    }
+
+    .hero h2 {
+
+        font-size: 50px;
+    }
+
+    .hero-emoji {
+
+        font-size: 120px;
+    }
+
+    .cards {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .numeros {
+
+        flex-direction: column;
+
+        gap: 30px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    nav ul {
+
+        display: none;
+    }
+
+    .cards {
+
+        grid-template-columns: 1fr;
+    }
+
+    .hero h2 {
+
+        font-size: 42px;
+    }
+
+    .titulo-secao h2,
+    .desafio h2 {
+
+        font-size: 35px;
+    }
+
+}
