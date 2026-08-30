@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta name="robots" content="noindex,nofollow,noarchive">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Minha Paixão pelo Futebol ⚽</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <h2>⚽ FUTEBOL</h2>
+
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#paixao">A Minha Paixão</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#contacto">Mensagem</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section id="inicio" class="hero">
+
+            <div class="hero-text">
+                <p class="pequeno">UMA PAIXÃO QUE NÃO TEM LIMITES</p>
+
+                <h1>O Futebol<br>
+                    <span>é mais do que um jogo.</span>
+                </h1>
+
+                <p>
+                    Para mim, o futebol é emoção, amizade, competição
+                    e momentos que ficam para sempre.
+                </p>
+
+                <button onclick="mostrarMensagem()">
+                    ⚽ Mostrar paixão
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- PAIXÃO -->
+        <section id="paixao" class="section">
+
+            <h2>A minha paixão pelo futebol</h2>
+
+            <p class="intro">
+                Desde sempre que o futebol faz parte da minha vida.
+                Gosto da adrenalina dos jogos, dos golos, das grandes
+                jogadas e, principalmente, de partilhar estes momentos
+                com os meus amigos.
+            </p>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="icon">⚽</div>
+                    <h3>O Jogo</h3>
+                    <p>
+                        A emoção de cada partida e a expectativa
+                        antes do apito inicial.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🏆</div>
+                    <h3>Vitórias</h3>
+                    <p>
+                        Nada melhor do que celebrar uma grande vitória
+                        com os amigos.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🔥</div>
+                    <h3>Adrenalina</h3>
+                    <p>
+                        Um golo no último minuto pode mudar tudo!
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GALERIA -->
+        <section id="galeria" class="gallery-section">
+
+            <h2>Momentos de Futebol</h2>
+
+            <div class="gallery">
+
+                <div class="photo">
+                    <img
+                        src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
+                        alt="Jogador de futebol">
+                    <div class="photo-text">A paixão pelo jogo</div>
+                </div>
+
+                <div class="photo">
+                    <img
+                        src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=900&q=80"
+                        alt="Campo de futebol">
+                    <div class="photo-text">O campo onde tudo acontece</div>
+                </div>
+
+                <div class="photo">
+                    <img
+                        src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&w=900&q=80"
+                        alt="Futebol">
+                    <div class="photo-text">90 minutos de emoção</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FRASE -->
+        <section class="quote">
+
+            <div>
+                <span>“</span>
+
+                <h2>
+                    Não é apenas futebol.
+                    <br>
+                    É uma forma de viver.
+                </h2>
+
+                <p>⚽ Amor pelo jogo • Paixão • Amizade ⚽</p>
+            </div>
+
+        </section>
+
+
+        <!-- MENSAGEM -->
+        <section id="contacto" class="message-section">
+
+            <h2>Deixa uma mensagem ⚽</h2>
+
+            <p>
+                Escreve o nome do teu amigo e descobre uma mensagem especial.
+            </p>
+
+            <div class="message-box">
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Nome do teu amigo">
+
+                <button onclick="enviarMensagem()">
+                    Enviar
+                </button>
+
+            </div>
+
+            <p id="resultado"></p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>⚽ Feito com paixão pelo futebol ❤️</p>
+        <p>© 2026 - A Minha Página de Futebol</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
