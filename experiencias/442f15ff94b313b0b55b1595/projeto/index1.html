@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta name="robots" content="noindex,nofollow,noarchive">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>O Meu Mundo dos Desportos</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b1020;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* MENU */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 16, 32, 0.92);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            border-bottom: 1px solid #27304a;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #00e5ff;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00e5ff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+
+            background:
+                radial-gradient(circle at top left, #153b67, transparent 40%),
+                radial-gradient(circle at bottom right, #40165e, transparent 40%),
+                #0b1020;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #00e5ff;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #c5cbe0;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            background: #00e5ff;
+            color: #061018;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
+        }
+
+        /* SECÇÕES */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 45px;
+        }
+
+        .section-title span {
+            color: #00e5ff;
+        }
+
+        /* CARTÕES */
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .sport-card {
+            background: #151c31;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #27304a;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .sport-card:hover {
+            transform: translateY(-10px);
+            border-color: #00e5ff;
+            box-shadow: 0 10px 35px rgba(0, 229, 255, 0.12);
+        }
+
+        .sport-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .sport-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .sport-card p {
+            color: #aeb6ce;
+        }
+
+        /* FAVORITOS */
+        .favorites {
+            background: #10162a;
+        }
+
+        .favorite-box {
+            max-width: 800px;
+            margin: auto;
+            background: #151c31;
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid #27304a;
+        }
+
+        .favorite-item {
+            margin: 25px 0;
+        }
+
+        .favorite-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .bar {
+            height: 12px;
+            background: #283149;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #00e5ff, #7c4dff);
+        }
+
+        /* JOGADORES */
+        .player-card {
+            background: #151c31;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #27304a;
+        }
+
+        .player-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: auto;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00e5ff, #7c4dff);
+        }
+
+        /* VOTAÇÃO */
+        .vote-box {
+            max-width: 600px;
+            margin: auto;
+            background: #151c31;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .vote-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .vote-btn {
+            padding: 15px;
+            border: 1px solid #34405f;
+            background: #1b243c;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .vote-btn:hover {
+            background: #00e5ff;
+            color: #061018;
+        }
+
+        #voteResult {
+            margin-top: 20px;
+            color: #00e5ff;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #080c18;
+            color: #8f98b1;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 650px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                gap: 12px;
+                font-size: 0.9rem;
+            }
+
+            .vote-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav>
+        <div class="logo">🏆 MEU DESPORTO</div>
+
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#desportos">Desportos</a></li>
+            <li><a href="#favoritos">Favoritos</a></li>
+            <li><a href="#jogadores">Ídolos</a></li>
+            <li><a href="#votacao">Votação</a></li>
+        </ul>
+    </nav>
+
+    <!-- INÍCIO -->
+    <header class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>O meu <span>mundo</span> dos desportos 🏆</h1>
+
+            <p>
+                Bem-vindos ao meu cantinho! Aqui mostro aos meus amigos
+                os desportos que mais gosto, os meus favoritos e os atletas
+                que admiro.
+            </p>
+
+            <a href="#desportos" class="btn">
+                Descobrir os meus desportos 🚀
+            </a>
+        </div>
+    </header>
+
+    <!-- DESPORTOS -->
+    <section id="desportos">
+        <h2 class="section-title">
+            Os meus <span>desportos</span>
+        </h2>
+
+        <div class="sports-grid">
+
+            <div class="sport-card" onclick="mostrarMensagem('Futebol')">
+                <div class="sport-icon">⚽</div>
+                <h3>Futebol</h3>
+                <p>O desporto que me faz vibrar a cada jogo!</p>
+            </div>
+
+            <div class="sport-card" onclick="mostrarMensagem('Basquetebol')">
+                <div class="sport-icon">🏀</div>
+                <h3>Basquetebol</h3>
+                <p>Velocidade, técnica e muitos triplos.</p>
+            </div>
+
+            <div class="sport-card" onclick="mostrarMensagem('Fórmula 1')">
+                <div class="sport-icon">🏎️</div>
+                <h3>Fórmula 1</h3>
+                <p>Velocidade, estratégia e adrenalina.</p>
+            </div>
+
+            <div class="sport-card" onclick="mostrarMensagem('Ténis')">
+                <div class="sport-icon">🎾</div>
+                <h3>Ténis</h3>
+                <p>Precisão, resistência e grandes batalhas.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAVORITOS -->
+    <section class="favorites" id="favoritos">
+        <h2 class="section-title">
+            Os meus <span>favoritos</span> ❤️
+        </h2>
+
+        <div class="favorite-box">
+
+            <div class="favorite-item">
+                <div class="favorite-header">
+                    <span>⚽ Futebol</span>
+                    <strong>95%</strong>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-fill" style="width: 95%;"></div>
+                </div>
+            </div>
+
+            <div class="favorite-item">
+                <div class="favorite-header">
+                    <span>🏎️ Fórmula 1</span>
+                    <strong>90%</strong>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-fill" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <div class="favorite-item">
+                <div class="favorite-header">
+                    <span>🏀 Basquetebol</span>
+                    <strong>80%</strong>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+
+            <div class="favorite-item">
+                <div class="favorite-header">
+                    <span>🎾 Ténis</span>
+                    <strong>75%</strong>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-fill" style="width: 75%;"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ÍDOLOS -->
+    <section id="jogadores">
+        <h2 class="section-title">
+            Os meus <span>ídolos</span> ⭐
+        </h2>
+
+        <div class="sports-grid">
+
+            <div class="player-card">
+                <div class="player-avatar">⚽</div>
+                <h3>O meu jogador favorito</h3>
+                <p>Craque dentro e fora do campo.</p>
+            </div>
+
+            <div class="player-card">
+                <div class="player-avatar">🏎️</div>
+                <h3>O meu piloto favorito</h3>
+                <p>Velocidade máxima e muita adrenalina.</p>
+            </div>
+
+            <div class="player-card">
+                <div class="player-avatar">🏀</div>
+                <h3>O meu jogador de NBA</h3>
+                <p>Talento, espetáculo e grandes jogadas.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- VOTAÇÃO -->
+    <section class="favorites" id="votacao">
+        <h2 class="section-title">
+            E tu, qual <span>preferes?</span> 🤔
+        </h2>
+
+        <div class="vote-box">
+
+            <p>
+                Escolhe o desporto que mais gostas!
+            </p>
+
+            <div class="vote-options">
+                <button class="vote-btn" onclick="votar('Futebol')">
+                    ⚽ Futebol
+                </button>
+
+                <button class="vote-btn" onclick="votar('Basquetebol')">
+                    🏀 Basquetebol
+                </button>
+
+                <button class="vote-btn" onclick="votar('Fórmula 1')">
+                    🏎️ Fórmula 1
+                </button>
+
+                <button class="vote-btn" onclick="votar('Ténis')">
+                    🎾 Ténis
+                </button>
+            </div>
+
+            <div id="voteResult"></div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>🏆 Feito por mim • Apaixonado por desporto ❤️</p>
+    </footer>
+
+
+    <script>
+
+        // Mensagem quando clicas num desporto
+        function mostrarMensagem(desporto) {
+            alert(
+                "🔥 " + desporto +
+                " é um dos meus desportos favoritos!"
+            );
+        }
+
+
+        // Sistema de votação
+        function votar(desporto) {
+
+            const resultado =
+                document.getElementById("voteResult");
+
+            resultado.innerHTML =
+                "✅ Boa escolha! Também gosto de " +
+                desporto + "!";
+        }
+
+
+        // Pequena animação quando a página abre
+        window.addEventListener("load", function () {
+
+            console.log(
+                "🏆 Bem-vindo ao meu mundo dos desportos!"
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>
+

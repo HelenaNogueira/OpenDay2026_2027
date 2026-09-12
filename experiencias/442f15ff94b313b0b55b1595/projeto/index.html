@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta name="robots" content="noindex,nofollow,noarchive">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Física - O Universo em Movimento</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0f1f;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* MENU */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 15px 8%;
+
+            background: rgba(10, 15, 31, 0.95);
+            border-bottom: 1px solid #293454;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #5ee7ff;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #5ee7ff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 85vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 40px 20px;
+
+            background:
+                radial-gradient(circle at 20% 20%, #164e63, transparent 35%),
+                radial-gradient(circle at 80% 80%, #312e81, transparent 35%),
+                #0a0f1f;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #5ee7ff;
+        }
+
+        .hero p {
+            color: #c8d0e6;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+
+            background: #5ee7ff;
+            color: #061018;
+
+            padding: 14px 25px;
+            border-radius: 30px;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #5ee7ff66;
+        }
+
+        /* SECÇÕES */
+        section {
+            padding: 80px 8%;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 45px;
+        }
+
+        .title span {
+            color: #5ee7ff;
+        }
+
+        /* CARTÕES */
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+        }
+
+        .card {
+            background: #121a30;
+            border: 1px solid #293454;
+
+            padding: 30px;
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #5ee7ff;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #5ee7ff;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #b9c2d9;
+        }
+
+        /* FÓRMULAS */
+        .formulas {
+            background: #0e1528;
+        }
+
+        .formula {
+            background: #121a30;
+            border: 1px solid #293454;
+
+            padding: 25px;
+            border-radius: 15px;
+
+            text-align: center;
+        }
+
+        .formula-equation {
+            display: block;
+
+            font-size: 2rem;
+            color: #5ee7ff;
+
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        /* CALCULADORA */
+        .calculator {
+            max-width: 650px;
+            margin: auto;
+
+            background: #121a30;
+            border: 1px solid #293454;
+
+            padding: 35px;
+            border-radius: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #cbd5e1;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px;
+
+            border-radius: 10px;
+            border: 1px solid #3a4666;
+
+            background: #0a0f1f;
+            color: white;
+
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #5ee7ff;
+        }
+
+        .calculate {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #5ee7ff;
+            color: #061018;
+
+            font-weight: bold;
+            font-size: 1rem;
+
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            background: #0a0f1f;
+
+            text-align: center;
+
+            color: #5ee7ff;
+            font-size: 1.2rem;
+        }
+
+        /* EXPERIÊNCIA */
+        .experiment {
+            max-width: 850px;
+            margin: auto;
+
+            background: #121a30;
+            border: 1px solid #293454;
+
+            padding: 35px;
+            border-radius: 20px;
+
+            text-align: center;
+        }
+
+        .track {
+            position: relative;
+
+            height: 100px;
+
+            background: #0a0f1f;
+
+            border-radius: 50px;
+
+            margin: 30px 0;
+
+            overflow: hidden;
+        }
+
+        .ball {
+            position: absolute;
+
+            left: 10px;
+            top: 25px;
+
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+
+            background: #5ee7ff;
+
+            box-shadow: 0 0 20px #5ee7ff;
+
+            transition: left 2s linear;
+        }
+
+        .experiment button {
+            border: none;
+
+            padding: 13px 25px;
+
+            border-radius: 25px;
+
+            background: #5ee7ff;
+            color: #061018;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        /* CURIOSIDADES */
+        .fact {
+            max-width: 700px;
+            margin: auto;
+
+            text-align: center;
+
+            background: #121a30;
+
+            border: 1px solid #293454;
+
+            padding: 35px;
+
+            border-radius: 20px;
+        }
+
+        #curiosity {
+            font-size: 1.2rem;
+            color: #dbeafe;
+
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+
+            padding: 30px;
+
+            background: #060a14;
+
+            color: #8792aa;
+        }
+
+        /* MOBILE */
+        @media (max-width: 650px) {
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav ul {
+                gap: 12px;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav>
+        <div class="logo">⚛️ FÍSICA</div>
+
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#temas">Temas</a></li>
+            <li><a href="#formulas">Fórmulas</a></li>
+            <li><a href="#calculadora">Calculadora</a></li>
+            <li><a href="#experiencia">Experiência</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- INÍCIO -->
+    <header class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <h1>
+                A Física está <span>em todo o lado</span> ⚛️
+            </h1>
+
+            <p>
+                Uma pequena viagem pelo mundo da Física:
+                movimento, forças, energia, eletricidade e muito mais.
+            </p>
+
+            <a href="#temas" class="button">
+                Explorar a Física 🚀
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- TEMAS -->
+    <section id="temas">
+
+        <h2 class="title">
+            Principais <span>temas</span>
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🚀</div>
+
+                <h3>Movimento</h3>
+
+                <p>
+                    Estuda como os objetos mudam de posição
+                    ao longo do tempo.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <div class="icon">💪</div>
+
+                <h3>Forças</h3>
+
+                <p>
+                    Uma força pode alterar o movimento ou
+                    deformar um objeto.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <div class="icon">⚡</div>
+
+                <h3>Energia</h3>
+
+                <p>
+                    A energia permite realizar trabalho e
+                    provocar transformações.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <div class="icon">🌌</div>
+
+                <h3>Universo</h3>
+
+                <p>
+                    A Física ajuda-nos a compreender estrelas,
+                    planetas, galáxias e o próprio espaço.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FÓRMULAS -->
+    <section class="formulas" id="formulas">
+
+        <h2 class="title">
+            Fórmulas <span>importantes</span>
+        </h2>
+
+        <div class="cards">
+
+            <div class="formula">
+
+                <h3>Velocidade</h3>
+
+                <span class="formula-equation">
+                    v = d / t
+                </span>
+
+                <p>
+                    velocidade = distância ÷ tempo
+                </p>
+
+            </div>
+
+
+            <div class="formula">
+
+                <h3>Força</h3>
+
+                <span class="formula-equation">
+                    F = m × a
+                </span>
+
+                <p>
+                    força = massa × aceleração
+                </p>
+
+            </div>
+
+
+            <div class="formula">
+
+                <h3>Energia Cinética</h3>
+
+                <span class="formula-equation">
+                    Ec = ½mv²
+                </span>
+
+                <p>
+                    energia associada ao movimento de um corpo
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CALCULADORA -->
+    <section id="calculadora">
+
+        <h2 class="title">
+            Calculadora de <span>velocidade</span> 🧮
+        </h2>
+
+        <div class="calculator">
+
+            <div class="input-group">
+
+                <label for="distance">
+                    Distância (metros)
+                </label>
+
+                <input
+                    type="number"
+                    id="distance"
+                    placeholder="Ex: 100"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="time">
+                    Tempo (segundos)
+                </label>
+
+                <input
+                    type="number"
+                    id="time"
+                    placeholder="Ex: 10"
+                >
+
+            </div>
+
+
+            <button
+                class="calculate"
+                onclick="calcularVelocidade()"
+            >
+                Calcular velocidade
+            </button>
+
+
+            <div
+                class="result"
+                id="resultado"
+            >
+                O resultado aparecerá aqui.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXPERIÊNCIA -->
+    <section class="formulas" id="experiencia">
+
+        <h2 class="title">
+            Experiência <span>interativa</span> 🔬
+        </h2>
+
+        <div class="experiment">
+
+            <h3>
+                Movimento de um objeto
+            </h3>
+
+            <p>
+                Clica no botão e observa a bola deslocar-se.
+                Isto representa, de forma simplificada,
+                um objeto em movimento.
+            </p>
+
+
+            <div class="track">
+
+                <div
+                    class="ball"
+                    id="ball"
+                ></div>
+
+            </div>
+
+
+            <button onclick="moverBola()">
+                ▶️ Iniciar experiência
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CURIOSIDADES -->
+    <section>
+
+        <h2 class="title">
+            Curiosidades <span>sobre Física</span> 🤯
+        </h2>
+
+        <div class="fact">
+
+            <p id="curiosity">
+                Sabias que a luz viaja no vazio a cerca de
+                300 000 km/s?
+            </p>
+
+            <button
+                class="button"
+                onclick="novaCuriosidade()"
+            >
+                Mostrar outra curiosidade
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            ⚛️ Trabalho de Física • Feito para aprender,
+            experimentar e descobrir.
+        </p>
+
+        <p>
+            © 2026
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // CALCULADORA DE VELOCIDADE
+        function calcularVelocidade() {
+
+            const distancia =
+                Number(document.getElementById("distance").value);
+
+            const tempo =
+                Number(document.getElementById("time").value);
+
+            const resultado =
+                document.getElementById("resultado");
+
+
+            if (distancia <= 0 || tempo <= 0) {
+
+                resultado.innerHTML =
+                    "⚠️ Introduz valores positivos.";
+
+                return;
+            }
+
+
+            const velocidade = distancia / tempo;
+
+
+            resultado.innerHTML =
+                "🚀 Velocidade = " +
+                velocidade.toFixed(2) +
+                " m/s";
+        }
+
+
+        // MOVIMENTO DA BOLA
+        function moverBola() {
+
+            const bola =
+                document.getElementById("ball");
+
+            bola.style.left = "calc(100% - 60px)";
+
+
+            setTimeout(function() {
+
+                bola.style.left = "10px";
+
+            }, 2200);
+        }
+
+
+        // CURIOSIDADES
+        const curiosidades = [
+
+            "💡 A luz viaja no vazio a cerca de 300 000 km/s.",
+
+            "🌍 A Terra está constantemente em movimento, mesmo quando estamos parados.",
+
+            "⚡ Um relâmpago pode atingir temperaturas superiores às da superfície do Sol.",
+
+            "🌌 O som não consegue propagar-se no espaço vazio porque precisa de um meio material.",
+
+            "🛰️ Os satélites permanecem em órbita devido à combinação entre velocidade e gravidade.",
+
+            "🍎 A famosa história da maçã está associada às ideias de Isaac Newton sobre a gravidade."
+
+        ];
+
+
+        let indice = 0;
+
+
+        function novaCuriosidade() {
+
+            indice++;
+
+            if (indice >= curiosidades.length) {
+                indice = 0;
+            }
+
+            document.getElementById("curiosity").innerHTML =
+                curiosidades[indice];
+        }
+
+    </script>
+
+</body>
+</html>
