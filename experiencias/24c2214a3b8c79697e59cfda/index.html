@@ -1,132 +1,651 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#171132">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="referrer" content="no-referrer">
-<title>Experiência de Diogo — SHARKCODERS Póvoa de Varzim</title>
-<link rel="stylesheet" href="../../assets/site.css">
-<script defer src="../../assets/site.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Os Meus Jogos 🎮</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #080812;
+            --card: #111122;
+            --card-hover: #191933;
+            --text: #ffffff;
+            --muted: #a7a7bd;
+            --primary: #8b5cf6;
+            --secondary: #06b6d4;
+            --accent: #ec4899;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        body.light {
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --card-hover: #f8fafc;
+            --text: #111827;
+            --muted: #64748b;
+            --border: rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            transition: 0.3s;
+        }
+
+        /* Fundo */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(139,92,246,0.15), transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(6,182,212,0.12), transparent 30%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Navegação */
+        nav {
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+            background: rgba(8,8,18,0.75);
+            border-bottom: 1px solid var(--border);
+        }
+
+        body.light nav {
+            background: rgba(241,245,249,0.8);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav button {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        nav button:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .tag {
+            display: inline-block;
+            color: var(--secondary);
+            border: 1px solid rgba(6,182,212,0.4);
+            background: rgba(6,182,212,0.08);
+            padding: 8px 15px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            line-height: 0.95;
+            margin-bottom: 25px;
+        }
+
+        .gradient {
+            background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--accent),
+                var(--secondary)
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1.15rem;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .scroll {
+            margin-top: 50px;
+            color: var(--muted);
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* Conteúdo */
+        section {
+            width: min(1100px, 90%);
+            margin: 0 auto;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 2.3rem;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+        }
+
+        /* Cards */
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .game {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .game:hover {
+            transform: translateY(-8px);
+            background: var(--card-hover);
+            border-color: rgba(139,92,246,0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .game-image {
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: linear-gradient(
+                135deg,
+                rgba(139,92,246,0.5),
+                rgba(6,182,212,0.3)
+            );
+        }
+
+        .game:nth-child(2) .game-image {
+            background: linear-gradient(
+                135deg,
+                #ef4444,
+                #7f1d1d
+            );
+        }
+
+        .game:nth-child(3) .game-image {
+            background: linear-gradient(
+                135deg,
+                #22c55e,
+                #064e3b
+            );
+        }
+
+        .game:nth-child(4) .game-image {
+            background: linear-gradient(
+                135deg,
+                #f59e0b,
+                #78350f
+            );
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .game-info p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .stars {
+            color: #facc15;
+            margin-top: 15px;
+            letter-spacing: 3px;
+        }
+
+        /* Ranking */
+        .ranking {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .rank {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 18px 22px;
+            border-radius: 15px;
+            transition: 0.2s;
+        }
+
+        .rank:hover {
+            transform: translateX(8px);
+            border-color: var(--primary);
+        }
+
+        .number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            width: 35px;
+        }
+
+        .rank-game {
+            flex: 1;
+        }
+
+        .rank-game h3 {
+            margin-bottom: 4px;
+        }
+
+        .rank-game span {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        /* Estatísticas */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 30px 20px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .stat span {
+            color: var(--muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        footer strong {
+            color: var(--primary);
+        }
+
+        /* Responsivo */
+        @media (max-width: 600px) {
+            nav {
+                padding: 18px 5%;
+            }
+
+            .hero {
+                min-height: 65vh;
+            }
+
+            section {
+                padding: 55px 0;
+            }
+
+            .rank {
+                gap: 12px;
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="scroll-progress"></div>
-<nav class="nav" aria-label="Navegação principal">
-  <div class="wrap nav-inner">
-    <a class="brand" href="../../sessoes/12-09-2026-code-teens-1730/index.html">
-      <img src="../../assets/sharkcoders-logo-circle.png" alt="SHARKCODERS">
-      <span class="brand-copy">
-        <span class="brand-name">SHARKCODERS</span>
-        <span class="brand-place">PÓVOA DE VARZIM</span>
-      </span>
-    </a>
-    <div class="nav-links">
-      <a href="../../sessoes/12-09-2026-code-teens-1730/index.html#experiencia">Experiência</a>
-      <a href="../../sessoes/12-09-2026-code-teens-1730/index.html#tecnologias">Tecnologias</a>
-      <a href="../../sessoes/12-09-2026-code-teens-1730/index.html#wave">WAVE</a>
-    </div>
-    <a class="nav-cta" href="../../sessoes/12-09-2026-code-teens-1730/index.html#tecnologias">Explorar tecnologia</a>
-    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
-  </div>
-</nav>
+    <!-- NAV -->
+    <nav>
+        <div class="logo">🎮 <span>MY</span>GAMES</div>
 
+        <button id="themeButton" onclick="toggleTheme()">
+            ☀️ Tema claro
+        </button>
+    </nav>
 
-<header class="student-hero">
-  <div class="wrap student-hero-content">
-    <span class="badge"><i class="dot"></i> Open Day Nacional · 12 setembro 2026</span>
-    <h1>A experiência de<br><span>Diogo</span></h1>
-    <p class="student-title">Os Meus Jogos 🎮 · Code Teens · Sessão 17h30–19h00</p>
-  </div>
-</header>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
 
-<main class="student-main">
-  <div class="wrap">
-    <div class="project-layout">
-      <section class="preview-card reveal">
-        <div class="preview-toolbar">
-          <div class="dots"><i></i><i></i><i></i></div>
-          <div class="preview-address">projeto/diogo/</div>
-          <div class="preview-actions">
-            <button class="icon-btn" id="open-project-modal" title="Abrir em modo ampliado">⛶</button>
-          </div>
+            <div class="tag">🎮 Bem-vindo ao meu mundo gamer</div>
+
+            <h1>
+                A minha vida,<br>
+                <span class="gradient">os meus jogos.</span>
+            </h1>
+
+            <p>
+                Gosto de explorar mundos, enfrentar desafios,
+                competir com amigos e passar horas a tentar
+                desbloquear aquele próximo nível.
+            </p>
+
+            <div class="scroll">
+                ↓ Descobre os meus favoritos ↓
+            </div>
+
         </div>
-        <iframe class="project-frame" src="projeto/" title="Projeto criado por Diogo" loading="lazy"></iframe>
-      </section>
+    </header>
 
-      <aside class="info-card reveal">
-        <div class="eyebrow">Projeto criado no Open Day</div>
-        <h2>Da ideia à página web</h2>
-        <p>Diogo partiu de um tema do seu interesse para experimentar como HTML, CSS e JavaScript trabalham em conjunto. A Inteligência Artificial foi apresentada como ferramenta de apoio à criação, à exploração de ideias e à resolução de desafios.</p>
+    <!-- JOGOS -->
+    <section>
 
-        <div class="skill-list">
-          <span class="skill">HTML</span>
-          <span class="skill">CSS</span>
-          <span class="skill">JavaScript</span>
-          <span class="skill">IA</span>
-          <span class="skill">Criatividade</span>
-          <span class="skill">Lógica</span>
+        <div class="section-title">
+            <h2>🔥 Os meus favoritos</h2>
+            <p>Alguns dos jogos que mais gosto de jogar.</p>
         </div>
 
-        <div class="btn-row">
-          <a class="btn btn-orange" href="projeto/" target="_blank" rel="noopener">🚀 Ver projeto</a>
-          <a class="btn btn-purple" href="projeto.zip" download>📦 Descarregar projeto</a>
-          <button class="btn btn-ghost" id="copy-link" style="color:#3b306d;border-color:#d9d4e8;background:#f4f1fa">🔗 Copiar ligação</button>
+        <div class="games">
+
+            <div class="game">
+                <div class="game-image">🪓</div>
+
+                <div class="game-info">
+                    <h3>God Of War Ragnarok</h3>
+                    <p>
+                        Descobre a história da redenção do Deus da Guera,
+                        e os seus sacrifiios.
+                    </p>
+
+                    <div class="stars">★★★★★★★★</div>
+                </div>
+            </div>
+
+            <div class="game">
+                <div class="game-image">🔫</div>
+
+                <div class="game-info">
+                    <h3>Call of Duty</h3>
+                    <p>
+                        Ação rápida, partidas competitivas
+                        e muitas horas a jogar com amigos.
+                    </p>
+
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+
+            <div class="game">
+                <div class="game-image">⛏️</div>
+
+                <div class="game-info">
+                    <h3>Minecraft</h3>
+                    <p>
+                        Construir, explorar e sobreviver.
+                        A criatividade é o limite.
+                    </p>
+
+                    <div class="stars">★★★★☆</div>
+                </div>
+            </div>
+
+            <div class="game">
+                <div class="game-image">🏎️</div>
+
+                <div class="game-info">
+                    <h3>Forza Horizon</h3>
+                    <p>
+                        Carros rápidos, corridas e um mundo
+                        aberto perfeito para explorar.
+                    </p>
+
+                    <div class="stars">★★★★☆</div>
+                </div>
+            </div>
+
         </div>
 
-        <div class="learning-box">
-          <div class="eyebrow">Mais do que uma página</div>
-          <h3>Experimentar para descobrir</h3>
-          <p>Durante a sessão, os participantes conheceram também Arduino e C++, desenvolvimento de jogos com Defold, conceitos 2D e 3D e programação em Lua.</p>
+    </section>
+
+    <!-- RANKING -->
+    <section>
+
+        <div class="section-title">
+            <h2>🏆 O meu Top 5</h2>
+            <p>Se tivesse de escolher apenas cinco...</p>
         </div>
-      </aside>
-    </div>
 
-    <div class="section-head reveal" style="margin-top:72px">
-      <div>
-        <div class="eyebrow">Outras áreas apresentadas</div>
-        <h2>Um ponto de partida.<br>Vários caminhos.</h2>
-      </div>
-      <p class="section-copy">A experiência permite perceber que aprender programação não significa seguir apenas uma linguagem: significa aprender a pensar, criar e resolver.</p>
-    </div>
+        <div class="ranking">
 
-    <div class="mini-stack">
-      <div class="mini-item reveal"><div class="ico">🤖</div><strong>Arduino + C++</strong></div>
-      <div class="mini-item reveal"><div class="ico">🎮</div><strong>Defold</strong></div>
-      <div class="mini-item reveal"><div class="ico">🕹️</div><strong>Jogos 2D / 3D</strong></div>
-      <div class="mini-item reveal"><div class="ico">🌙</div><strong>Lua</strong></div>
-    </div>
-  </div>
-</main>
+            <div class="rank">
+                <div class="number">01</div>
 
-<section class="statement">
-  <div class="wrap statement-inner reveal">
-    <h2>O futuro não se adivinha.<br><span>Educa-se.</span></h2>
-  </div>
-</section>
+                <div class="rank-game">
+                    <h3>🎮 The Witcher 3</h3>
+                    <span>RPG • Mundo Aberto</span>
+                </div>
 
+                <strong>10/10</strong>
+            </div>
 
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <img src="../../assets/sharkcoders-logo-circle.png" alt="">
-      <div><strong>SHARKCODERS</strong><br><small>Póvoa de Varzim</small></div>
-    </div>
-    <small>Open Day 2026/2027 · Geniuses of Tomorrow</small>
-  </div>
-</footer>
+            <div class="rank">
+                <div class="number">02</div>
 
+                <div class="rank-game">
+                    <h3>🔫 Call of Duty</h3>
+                    <span>FPS • Multiplayer</span>
+                </div>
 
-<div class="modal" id="project-modal" aria-hidden="true">
-  <div class="modal-shell">
-    <div class="modal-top">
-      <strong>Projeto de Diogo</strong>
-      <button class="modal-close" id="close-project-modal">✕ Fechar</button>
-    </div>
-    <iframe id="modal-frame" title="Projeto ampliado"></iframe>
-  </div>
-</div>
-<div class="toast" id="toast"></div>
+                <strong>9.5/10</strong>
+            </div>
+
+            <div class="rank">
+                <div class="number">03</div>
+
+                <div class="rank-game">
+                    <h3>⛏️ Minecraft</h3>
+                    <span>Sandbox • Sobrevivência</span>
+                </div>
+
+                <strong>9/10</strong>
+            </div>
+
+            <div class="rank">
+                <div class="number">04</div>
+
+                <div class="rank-game">
+                    <h3>🏎️ Forza Horizon</h3>
+                    <span>Corridas • Mundo Aberto</span>
+                </div>
+
+                <strong>8.5/10</strong>
+            </div>
+
+            <div class="rank">
+                <div class="number">05</div>
+
+                <div class="rank-game">
+                    <h3>🚀 GTA V</h3>
+                    <span>Ação • Mundo Aberto</span>
+                </div>
+
+                <strong>8.5/10</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ESTATÍSTICAS -->
+    <section>
+
+        <div class="section-title">
+            <h2>📊 As minhas estatísticas</h2>
+            <p>Porque aparentemente jogar também conta como estatística.</p>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+                <strong id="games">27</strong>
+                <span>Jogos jogados</span>
+            </div>
+
+            <div class="stat">
+                <strong id="hours">1.250+</strong>
+                <span>Horas de jogo</span>
+            </div>
+
+            <div class="stat">
+                <strong>5</strong>
+                <span>Plataformas</span>
+            </div>
+
+            <div class="stat">
+                <strong>∞</strong>
+                <span>Diversão</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        Feito com 🎮, ☕ e muitas horas de jogo.
+        <br><br>
+        <strong>© 2026 — O meu mundo gamer</strong>
+    </footer>
+
+    <script>
+
+        // Alternar entre tema escuro e claro
+        function toggleTheme() {
+
+            document.body.classList.toggle("light");
+
+            const button = document.getElementById("themeButton");
+
+            if (document.body.classList.contains("light")) {
+                button.innerHTML = "🌙 Tema escuro";
+            } else {
+                button.innerHTML = "☀️ Tema claro";
+            }
+        }
+
+        // Pequena animação quando os elementos aparecem
+        const elements = document.querySelectorAll(
+            ".game, .rank, .stat"
+        );
+
+        const observer = new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+        elements.forEach(element => {
+
+            element.style.opacity = "0";
+            element.style.transform = "translateY(25px)";
+            element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+
+            observer.observe(element);
+
+        });
+
+        // Mensagem ao clicar num jogo
+        document.querySelectorAll(".game").forEach(game => {
+
+            game.addEventListener("click", () => {
+
+                const title = game.querySelector("h3").textContent;
+
+                alert(
+                    "🎮 " + title +
+                    "\\n\\nEste é um dos meus jogos favoritos!"
+                );
+
+            });
+
+        });
+
+    </script>
+
 </body>
 </html>
